@@ -6,6 +6,138 @@
 | 2 | Daffa Arya Satyatma | 5025251269 |
 | 3 | Raka Rajendra Dipo Alam | 5025251272 |
 
+# Implementasi dan Analisis Algoritma Informed Search pada Robot Pengantar Makanan di Kampus ITS
+
+**Algoritma:** Greedy Best-First Search dan A* Search  
+**Studi Kasus:** Optimasi rute robot pengantar makanan di lingkungan kampus ITS  
+**Bahasa Pemrograman:** Python
+
+## 1. Deskripsi Masalah
+
+- Robot bertugas mengantarkan makanan dari Kantin ITS menuju Gedung Informatika.
+- Setiap jalur memiliki biaya perjalanan yang berbeda, bergantung pada jarak dan tingkat hambatannya.
+- Robot perlu menentukan rute yang paling efisien agar total biaya perjalanan seminimal mungkin.
+- Dua algoritma Informed Search yang digunakan:
+  - **Greedy Best-First Search:** Memilih jalur berdasarkan perkiraan biaya menuju tujuan menggunakan heuristik `h(n)`.
+  - **A* Search:** Memilih jalur berdasarkan biaya yang sudah ditempuh `g(n)` dan perkiraan biaya menuju tujuan `h(n)`.
+- Kedua algoritma dibandingkan berdasarkan rute yang ditemukan, total biaya, dan jumlah node yang dieksplorasi.
+- Seluruh lokasi, jalur, dan biaya yang digunakan merupakan simulasi untuk pembelajaran, bukan data pengukuran sebenarnya di ITS.
+
+## 2. Representasi Graf
+
+- Graf digunakan untuk merepresentasikan lokasi dan jalur yang dapat dilewati robot.
+- Terdapat enam node yang mewakili lokasi perjalanan:
+  - **S:** Kantin ITS sebagai titik awal.
+  - **A:** Koridor Utama sebagai jalur relatif dekat.
+  - **B:** Taman Kampus sebagai jalur alternatif.
+  - **C:** Area Parkir sebagai jalur dengan hambatan.
+  - **D:** Jalur Fakultas sebagai jalur yang lebih lancar.
+  - **G:** Gedung Informatika sebagai titik tujuan.
+- Graf yang digunakan merupakan graf berarah, sehingga setiap jalur menunjukkan arah perpindahan dari satu node ke node berikutnya.
+
+### Biaya Perjalanan Antar-Node
+
+| Dari | Ke | Biaya |
+|---|---|---:|
+| S | A | 2 |
+| S | B | 4 |
+| A | C | 7 |
+| B | D | 2 |
+| C | G | 3 |
+| D | G | 3 |
+
+- Biaya merepresentasikan gabungan jarak dan tingkat hambatan perjalanan.
+- Semakin kecil biaya suatu jalur, semakin efisien jalur tersebut dalam simulasi.
+
+## 3. Nilai Heuristik
+
+- Heuristik `h(n)` merupakan perkiraan biaya yang diperlukan untuk mencapai Gedung Informatika dari suatu node.
+- Nilai heuristik digunakan untuk membantu algoritma menentukan node yang perlu diprioritaskan.
+
+| Node | Nilai Heuristik |
+|---|---:|
+| S | 7 |
+| A | 4 |
+| B | 5 |
+| C | 2 |
+| D | 2 |
+| G | 0 |
+
+- Node tujuan `G` memiliki nilai heuristik 0 karena robot sudah mencapai tujuan.
+- Heuristik yang digunakan bersifat **admissible**, yaitu tidak melebihi biaya minimum sebenarnya menuju tujuan.
+- Sifat tersebut mendukung A* dalam menemukan rute optimal pada graf simulasi ini.
+
+## 4. Rumus Algoritma
+
+### Greedy Best-First Search
+
+- Menggunakan fungsi evaluasi:
+
+  `f(n) = h(n)`
+
+- Algoritma memilih node dengan nilai heuristik terkecil.
+- Biaya perjalanan yang telah ditempuh tidak menjadi pertimbangan dalam menentukan prioritas node.
+- Kelebihannya adalah dapat mencapai tujuan dengan eksplorasi yang lebih sedikit pada kasus tertentu.
+- Kekurangannya adalah rute yang ditemukan belum tentu memiliki biaya total paling rendah.
+
+### A* Search
+
+- Menggunakan fungsi evaluasi:
+
+  `f(n) = g(n) + h(n)`
+
+- Keterangan:
+  - `g(n)`: Total biaya perjalanan dari titik awal ke node saat ini.
+  - `h(n)`: Perkiraan biaya perjalanan dari node saat ini menuju tujuan.
+  - `f(n)`: Perkiraan total biaya perjalanan melalui node tersebut.
+- A* mempertimbangkan biaya yang sudah dikeluarkan sekaligus perkiraan biaya menuju tujuan.
+- Dengan heuristik admissible dan kondisi pencarian yang sesuai, A* dapat menemukan rute optimal.
+
+### Perbedaan Utama
+
+- **Greedy Best-First Search:** Memprioritaskan perkiraan kedekatan dengan tujuan.
+- **A* Search:** Memprioritaskan gabungan biaya perjalanan yang sudah ditempuh dan perkiraan biaya menuju tujuan.
+
+## 5. Implementasi Program Python
+
+### Library yang Digunakan
+
+- Program menggunakan library `heapq` untuk membuat *priority queue*.
+- Node dengan nilai prioritas terkecil akan diproses terlebih dahulu.
+- Implementasi kedua algoritma ditempatkan dalam satu file Python agar mudah dijalankan dan dibandingkan.
+
+### Representasi Graf
+
+- Variabel `graf` menyimpan hubungan antar-node beserta biaya perjalanan setiap jalur.
+- Setiap node memiliki daftar tetangga yang dapat dituju dan biaya untuk mencapai tetangga tersebut.
+- Contoh: node `S` memiliki jalur menuju `A` dengan biaya 2 dan menuju `B` dengan biaya 4.
+
+### Data Heuristik
+
+- Variabel `heuristik` menyimpan nilai `h(n)` untuk setiap node.
+- Nilai ini digunakan oleh Greedy untuk menentukan prioritas pencarian.
+- Pada A*, nilai heuristik dijumlahkan dengan biaya perjalanan yang sudah ditempuh.
+
+### Data Lokasi
+
+- Variabel `lokasi` menghubungkan kode setiap node dengan nama lokasi sebenarnya dalam simulasi.
+- Contohnya, `S` mewakili Kantin ITS dan `G` mewakili Gedung Informatika.
+- Data ini membantu menampilkan atau menjelaskan rute berdasarkan nama lokasi.
+
+### Fungsi Greedy Best-First Search
+
+- Fungsi `greedy(awal, tujuan)` menjalankan pencarian berdasarkan nilai heuristik.
+- Antrian menyimpan prioritas heuristik, biaya perjalanan, node saat ini, dan rute yang telah dilalui.
+- Variabel `dikunjungi` mencatat node yang sudah dieksplorasi agar tidak diproses berulang kali.
+- Variabel `jumlah` menghitung banyaknya node yang dieksplorasi.
+- Ketika node tujuan ditemukan, fungsi mengembalikan rute, total biaya, dan jumlah node yang dieksplorasi.
+
+### Fungsi A* Search
+- Fungsi `astar(awal, tujuan)` menjalankan pencarian berdasarkan `f(n) = g(n) + h(n)`.
+- Antrian memprioritaskan node dengan nilai evaluasi terkecil.
+- Variabel `terbaik` menyimpan biaya perjalanan terbaik yang diketahui untuk setiap node.
+- Node yang memiliki biaya lebih buruk daripada biaya terbaik yang sudah ditemukan dapat dilewati.
+- Proses pencarian dilanjutkan sampai tujuan ditemukan, kemudian hasilnya dapat dibandingkan dengan Greedy.
 
 ## 6. Hasil Pengujian
 
