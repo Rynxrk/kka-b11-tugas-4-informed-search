@@ -100,44 +100,11 @@
 
 ## 5. Implementasi Program Python
 
-### Library yang Digunakan
-
-- Program menggunakan library `heapq` untuk membuat *priority queue*.
-- Node dengan nilai prioritas terkecil akan diproses terlebih dahulu.
-- Implementasi kedua algoritma ditempatkan dalam satu file Python agar mudah dijalankan dan dibandingkan.
-
-### Representasi Graf
-
-- Variabel `graf` menyimpan hubungan antar-node beserta biaya perjalanan setiap jalur.
-- Setiap node memiliki daftar tetangga yang dapat dituju dan biaya untuk mencapai tetangga tersebut.
-- Contoh: node `S` memiliki jalur menuju `A` dengan biaya 2 dan menuju `B` dengan biaya 4.
-
-### Data Heuristik
-
-- Variabel `heuristik` menyimpan nilai `h(n)` untuk setiap node.
-- Nilai ini digunakan oleh Greedy untuk menentukan prioritas pencarian.
-- Pada A*, nilai heuristik dijumlahkan dengan biaya perjalanan yang sudah ditempuh.
-
-### Data Lokasi
-
-- Variabel `lokasi` menghubungkan kode setiap node dengan nama lokasi sebenarnya dalam simulasi.
-- Contohnya, `S` mewakili Kantin ITS dan `G` mewakili Gedung Informatika.
-- Data ini membantu menampilkan atau menjelaskan rute berdasarkan nama lokasi.
-
-### Fungsi Greedy Best-First Search
-
-- Fungsi `greedy(awal, tujuan)` menjalankan pencarian berdasarkan nilai heuristik.
-- Antrian menyimpan prioritas heuristik, biaya perjalanan, node saat ini, dan rute yang telah dilalui.
-- Variabel `dikunjungi` mencatat node yang sudah dieksplorasi agar tidak diproses berulang kali.
-- Variabel `jumlah` menghitung banyaknya node yang dieksplorasi.
-- Ketika node tujuan ditemukan, fungsi mengembalikan rute, total biaya, dan jumlah node yang dieksplorasi.
-
-### Fungsi A* Search
-- Fungsi `astar(awal, tujuan)` menjalankan pencarian berdasarkan `f(n) = g(n) + h(n)`.
-- Antrian memprioritaskan node dengan nilai evaluasi terkecil.
-- Variabel `terbaik` menyimpan biaya perjalanan terbaik yang diketahui untuk setiap node.
-- Node yang memiliki biaya lebih buruk daripada biaya terbaik yang sudah ditemukan dapat dilewati.
-- Proses pencarian dilanjutkan sampai tujuan ditemukan, kemudian hasilnya dapat dibandingkan dengan Greedy.
+- Program menggunakan library `heapq` untuk membuat *priority queue*, sehingga node dengan prioritas terkecil diproses terlebih dahulu.
+- Variabel `graf` menyimpan hubungan antar-node beserta biaya perjalanan pada setiap jalur, `heuristik` menyimpan perkiraan biaya menuju tujuan, dan `lokasi` menyimpan nama lokasi berdasarkan kode node.
+- Fungsi `greedy(awal, tujuan)` menjalankan algoritma Greedy Best-First Search dengan memilih node berdasarkan nilai heuristik terkecil. Fungsi ini mencatat node yang telah dikunjungi, total biaya perjalanan, dan jumlah node yang dieksplorasi.
+- Fungsi `astar(awal, tujuan)` menjalankan algoritma A* Search dengan mempertimbangkan biaya perjalanan yang telah ditempuh dan perkiraan biaya menuju tujuan. Variabel `terbaik` digunakan untuk menyimpan biaya perjalanan terbaik yang diketahui pada setiap node.
+- **Alur kerja program:** Program memuat data graf dan heuristik, kemudian menjalankan algoritma Greedy dan A* dari node awal `S` menuju node tujuan `G`. Setiap algoritma memasukkan node ke dalam *priority queue*, memilih node dengan prioritas terkecil, lalu memeriksa tetangganya dan memperbarui informasi rute serta biaya perjalanan. Proses berulang sampai tujuan ditemukan. Setelah itu, program menampilkan rute yang diperoleh, total biaya perjalanan, dan jumlah node yang dieksplorasi untuk membandingkan hasil kedua algoritma.
 
 ## 6. Hasil Pengujian
 
