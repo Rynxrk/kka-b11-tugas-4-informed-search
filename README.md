@@ -1,5 +1,3 @@
-# kka-b11-tugas-4-informed-search
-
 | No | Nama | NRP |
 | :--: | :--- | :--- |
 | 1 | Maulana Bagas Rizqi Pratama | 5025251248 |
