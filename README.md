@@ -21,7 +21,11 @@ Perlu diperhatikan bahwa lokasi, jalur, dan biaya yang digunakan dalam studi kas
 
 ## 2. Representasi Graf
 
-Graf digunakan untuk menggambarkan lokasi yang dapat dilewati robot beserta hubungan antarjalurnya. Terdapat enam node yang digunakan, yaitu S sebagai Kantin ITS, A sebagai Koridor Utama, B sebagai Taman Kampus, C sebagai Area Parkir, D sebagai Jalur Fakultas, dan G sebagai Gedung Informatika.
+### Visualisasi Hasil Rute
+
+![image alt](https://github.com/Rynxrk/kka-b11-tugas-4-informed-search/blob/c536f802f6d0eaa3e704dd0441c5794bc44d98a6/source%20image/Graf%20GBFS.jpeg)
+
+Graf digunakan untuk menggambarkan lokasi yang dapat dilewati robot beserta hubungan antar jalurnya. Terdapat enam node yang digunakan, yaitu S sebagai Kantin ITS, A sebagai Koridor Utama, B sebagai Taman Kampus, C sebagai Area Parkir, D sebagai Jalur Fakultas, dan G sebagai Gedung Informatika.
 
 Setiap jalur memiliki biaya perjalanan yang menggambarkan gabungan jarak dan tingkat hambatan. Hubungan antar-node beserta biayanya disimpan dalam graf berarah, sehingga robot hanya dapat mengikuti arah jalur yang telah ditentukan.
 
@@ -86,7 +90,7 @@ Penghematan A*: 25.0%
 
 ### Visualisasi Hasil Rute
 
-![image alt](https://github.com/Rynxrk/kka-b11-tugas-4-informed-search/blob/c536f802f6d0eaa3e704dd0441c5794bc44d98a6/source%20image/Graf%20GBFS.jpeg)
+![image alt](https://raw.githubusercontent.com/Rynxrk/kka-b11-tugas-4-informed-search/refs/heads/main/source%20image/Graf%20rute%20robot.jpeg)
 
 | Algoritma | Rute | Total Biaya |
 |---|---|---:|
