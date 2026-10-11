@@ -130,8 +130,8 @@ A* Search mengeksplorasi lima node dan menghasilkan rute dengan biaya lebih rend
 ### Perbandingan Total Biaya Perjalanan
 
 ```text
-Greedy Best-First Search | ████████████ 12
-A* Search                | █████████     9
+Greedy Best-First Search | █ █ █ █ █ █ █ █ █ █ █ █ 12
+A* Search                | █ █ █ █ █ █ █ █ █     9
 ```
 
 Semakin rendah total biaya, semakin efisien rute yang dihasilkan.
