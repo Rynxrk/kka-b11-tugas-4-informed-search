@@ -146,9 +146,9 @@ Selisih biaya perjalanan:
 
 Persentase penghematan biaya menggunakan A* dibandingkan Greedy:
 
-\[
+$$
 \frac{12-9}{12}\times100\% = 25\%
-\]
+$$
 
 Dengan demikian, A* menghasilkan penghematan biaya perjalanan sebesar **25%** dibandingkan Greedy pada studi kasus ini.
 
