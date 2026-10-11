@@ -163,9 +163,16 @@ Penghematan A*: 25.0%
 
 ### Visualisasi Hasil Rute
 
+![image alt](https://github.com/Rynxrk/kka-b11-tugas-4-informed-search/blob/c536f802f6d0eaa3e704dd0441c5794bc44d98a6/source%20image/Graf%20GBFS.jpeg)
+
 | Algoritma | Rute | Total Biaya |
 |---|---|---:|
 | Greedy Best-First Search | S → A → C → G | 12 |
+
+![image alt](https://github.com/Rynxrk/kka-b11-tugas-4-informed-search/blob/c536f802f6d0eaa3e704dd0441c5794bc44d98a6/source%20image/Graf%20A%20star.jpeg)
+
+| Algoritma | Rute | Total Biaya |
+|---|---|---:|
 | A* Search | S → B → D → G | 9 |
 
 Keterangan:
