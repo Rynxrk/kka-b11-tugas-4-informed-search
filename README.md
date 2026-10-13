@@ -53,17 +53,15 @@ Berbeda dengan Greedy, A* mempertimbangkan biaya yang telah ditempuh sekaligus p
 
 ## 5. Implementasi Program Python
 
-Program dibuat menggunakan bahasa Python dengan bantuan library `heapq` untuk mengelola *priority queue*. Struktur ini memungkinkan node dengan nilai prioritas terkecil diproses terlebih dahulu. Kedua algoritma ditempatkan dalam satu file Python agar implementasi dan hasilnya mudah dibandingkan.
+Program menggunakan library heapq untuk mengelola priority queue. Struktur ini memungkinkan node dengan nilai prioritas terkecil diproses terlebih dahulu. Seluruh data graf, heuristik, lokasi, dan fungsi pencarian ditempatkan dalam satu file Python.
 
-Graf disimpan dalam variabel `graf`, yang berisi hubungan antar-node beserta biaya setiap jalur. Variabel `heuristik` menyimpan perkiraan biaya menuju tujuan, sedangkan variabel `lokasi` menghubungkan kode node dengan nama lokasi yang sesuai.
+Variabel graf menyimpan hubungan antar-node beserta biaya setiap jalur. Variabel heuristik menyimpan nilai perkiraan biaya menuju tujuan, sedangkan lokasi menghubungkan kode node dengan nama lokasi lengkapnya.
 
-Fungsi `greedy(awal, tujuan)` menjalankan pencarian menggunakan nilai heuristik. Fungsi ini menggunakan antrian prioritas untuk menentukan node yang diproses, himpunan `dikunjungi` untuk mencatat node yang telah dieksplorasi, serta variabel `jumlah` untuk menghitung banyaknya node yang dieksplorasi. Ketika tujuan ditemukan, fungsi mengembalikan rute, total biaya, dan jumlah node yang telah dieksplorasi.
+Fungsi greedy(awal, tujuan) menjalankan algoritma Greedy Best-First Search. Fungsi ini menggunakan antrian prioritas untuk memilih node berdasarkan nilai heuristik, dikunjungi untuk mencatat node yang telah diproses, dan jumlah untuk menghitung node yang dieksplorasi. Ketika tujuan ditemukan, fungsi mengembalikan rute, total biaya, dan jumlah node yang dieksplorasi.
 
-Sementara itu, fungsi `astar(awal, tujuan)` menjalankan pencarian menggunakan gabungan biaya perjalanan dan heuristik. Variabel `terbaik` digunakan untuk menyimpan biaya perjalanan terbaik yang diketahui menuju setiap node. Dengan mekanisme tersebut, program dapat melewati jalur yang memiliki biaya lebih buruk daripada jalur terbaik yang sudah ditemukan.
+Fungsi astar(awal, tujuan) menjalankan algoritma A* Search dengan menggabungkan biaya perjalanan dan nilai heuristik. Variabel terbaik menyimpan biaya terendah yang telah ditemukan untuk setiap node. Apabila ditemukan jalur baru dengan biaya yang lebih rendah, nilai tersebut diperbarui dan node dimasukkan kembali ke antrian dengan prioritas baru.
 
-Melalui implementasi kedua fungsi tersebut, hasil pencarian dapat digunakan untuk membandingkan efektivitas Greedy Best-First Search dan A* Search dalam menentukan rute pengantaran makanan.
-
-**Catatan:** Potongan kode pada teks sumber berhenti di tengah implementasi fungsi A*. Oleh karena itu, penjelasan di atas mengikuti struktur dan fungsi yang terlihat pada kode yang diberikan.
+Pada bagian akhir program, variabel awal ditetapkan sebagai S dan tujuan sebagai G. Kedua algoritma kemudian dijalankan untuk memperoleh hasil pencarian masing-masing. Program menampilkan rute, total biaya, dan jumlah node yang dieksplorasi, lalu menghitung selisih biaya serta persentase penghematan yang diperoleh A* dibandingkan Greedy.
 ## 6. Hasil Pengujian
 
 Berdasarkan eksekusi algoritma pada graf simulasi, diperoleh hasil sebagai berikut.
